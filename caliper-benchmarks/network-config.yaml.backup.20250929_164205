@@ -16,7 +16,7 @@ organizations:
       certificates:
         - name: 'admin'
           clientPrivateKey:
-            path: ../fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/d45619504b8a2180172955682cfd0519149f1aab5302ac9b5fe315c009b2c622_sk
+            path: ../fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/admin_sk
           clientSignedCert:
             path: /home/vboxuser/projet-blockchain/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/cert.pem
     connectionProfile:

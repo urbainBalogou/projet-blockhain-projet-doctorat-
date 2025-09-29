@@ -7,7 +7,7 @@
   "dependencies": {
     "@hyperledger/caliper-fabric": "^0.6.0",
     "fabric-ca-client": "^2.2.19",
-    "fabric-network": "^2.2.19"
+    "fabric-network": "^2.2.20"
   },
   "main": "createAssets.js",
   "scripts": {
