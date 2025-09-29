@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Connexion</title>
+  <style>
+    /* Reset sommaire */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: «Helvetica Neue», Arial, sans-serif;
+      background: linear-gradient(135deg, #c6c9d3, #76717c);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #333;
+    }
+    .login-container {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      width: 320px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+    .login-container h1 {
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      color: #444;
+    }
+    .login-container form {
+      display: flex;
+      flex-direction: column;
+    }
+    .login-container label {
+      text-align: left;
+      margin-bottom: 0.25rem;
+      font-weight: bold;
+      color: #555;
+    }
+    .login-container input {
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: border-color .2s;
+    }
+    .login-container input:focus {
+      border-color: #667eea;
+      outline: none;
+    }
+    .error-msg {
+      min-height: 1.2em;
+      margin-bottom: 1rem;
+      color: #c53030;
+      font-size: 0.9rem;
+    }
+    .login-container button {
+      padding: 0.75rem;
+      background: #667eea;
+      color: #fff;
+      font-size: 1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .login-container button:hover {
+      background: #5a67d8;
+    }
+    .login-container {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h1>Se connecter</h1>
+    <form action="/login-db" method="post">
+      <label for="username">Utilisateur</label>
+      <input id="username" name="username" type="text" placeholder="Votre nom d’utilisateur" required>
+
+      <label for="password">Mot de passe</label>
+      <input id="password" name="password" type="password" placeholder="••••••••••" required>
+
+      <div id="errorMsg" class="error-msg">
+        <script>
+          // Affiche le message d'erreur passé en query string
+          const params = new URLSearchParams(location.search);
+          if (params.has('error')) {
+            document.write(params.get('error'));
+          }
+        </script>
+      </div>
+
+      <button type="submit">Connexion</button>
+    </form>
+  </div>
+</body>
+</html>
+

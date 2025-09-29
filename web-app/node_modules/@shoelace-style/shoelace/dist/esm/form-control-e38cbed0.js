@@ -1,0 +1,21 @@
+import { h } from './index-30311a18.js';
+
+const FormControl = (props, children) => {
+  const hasLabel = props.label ? true : props.hasLabelSlot;
+  const hasHelpText = props.helpText ? true : props.hasHelpTextSlot;
+  return (h("div", { part: "form-control", class: {
+      'form-control': true,
+      'form-control--small': props.size === 'small',
+      'form-control--medium': props.size === 'medium',
+      'form-control--large': props.size === 'large',
+      'form-control--has-label': hasLabel,
+      'form-control--has-help-text': hasHelpText
+    } },
+    h("label", { part: "label", id: props.labelId, class: "form-control__label", htmlFor: props.inputId, "aria-hidden": hasLabel ? 'false' : 'true', onClick: props.onLabelClick },
+      h("slot", { name: "label" }, props.label)),
+    h("div", { class: "form-control__input" }, children),
+    h("div", { part: "help-text", id: props.helpTextId, class: "form-control__help-text", "aria-hidden": hasHelpText ? 'false' : 'true' },
+      h("slot", { name: "help-text" }, props.helpText))));
+};
+
+export { FormControl as F };

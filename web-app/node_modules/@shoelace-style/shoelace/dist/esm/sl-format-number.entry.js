@@ -1,0 +1,35 @@
+import { r as registerInstance } from './index-30311a18.js';
+
+const FormatBytes = class {
+  constructor(hostRef) {
+    registerInstance(this, hostRef);
+    /** The number to format. */
+    this.value = 0;
+    /** The formatting style to use. */
+    this.type = 'decimal';
+    /** Turns off grouping separators. */
+    this.noGrouping = false;
+    /** The currency to use when formatting. Must be an ISO 4217 currency code such as `USD` or `EUR`. */
+    this.currency = 'USD';
+    /** How to display the currency. */
+    this.currencyDisplay = 'symbol';
+  }
+  render() {
+    if (isNaN(this.value)) {
+      return '';
+    }
+    return new Intl.NumberFormat(this.locale, {
+      style: this.type,
+      currency: this.currency,
+      currencyDisplay: this.currencyDisplay,
+      useGrouping: !this.noGrouping,
+      minimumIntegerDigits: this.minimumIntegerDigits,
+      minimumFractionDigits: this.minimumFractionDigits,
+      maximumFractionDigits: this.maximumFractionDigits,
+      minimumSignificantDigits: this.minimumSignificantDigits,
+      maximumSignificantDigits: this.maximumSignificantDigits
+    }).format(this.value);
+  }
+};
+
+export { FormatBytes as sl_format_number };

@@ -1,0 +1,24 @@
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+const index = require('./index-2ed8b67e.js');
+
+const themeCss = ":host{position:relative;box-sizing:border-box}:host *,:host *:before,:host *:after{box-sizing:inherit}:host{display:contents}";
+
+const Theme = class {
+  constructor(hostRef) {
+    index.registerInstance(this, hostRef);
+    /**
+     * The name of the theme to use. The user is responsible for including the associated stylesheet(s). Supportive themes
+     * must adhere to theme guidelines by exposing a class that follows the `sl-theme-{name}` convention.
+     */
+    this.name = '';
+  }
+  render() {
+    return (index.h(index.Host, { class: `sl-theme-${this.name}` }, index.h("slot", null)));
+  }
+};
+Theme.style = themeCss;
+
+exports.sl_theme = Theme;

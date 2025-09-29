@@ -1,0 +1,12 @@
+/**
+ * @since 2.0
+ * @status experimental
+ */
+export declare class Theme {
+  /**
+   * The name of the theme to use. The user is responsible for including the associated stylesheet(s). Supportive themes
+   * must adhere to theme guidelines by exposing a class that follows the `sl-theme-{name}` convention.
+   */
+  name: string;
+  render(): any;
+}

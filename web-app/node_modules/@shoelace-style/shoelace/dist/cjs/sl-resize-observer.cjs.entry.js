@@ -1,0 +1,41 @@
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+const index = require('./index-2ed8b67e.js');
+
+const resizeObserverCss = ":host{position:relative;box-sizing:border-box}:host *,:host *:before,:host *:after{box-sizing:inherit}:host{display:contents}";
+
+const ResizeObserverUtility = class {
+  constructor(hostRef) {
+    index.registerInstance(this, hostRef);
+    this.slResize = index.createEvent(this, "sl-resize", 7);
+    this.observedElements = [];
+  }
+  connectedCallback() {
+    this.resizeObserver = new ResizeObserver(entries => this.slResize.emit(entries));
+    this.handleSlotChange = this.handleSlotChange.bind(this);
+  }
+  disconnectedCallback() {
+    this.resizeObserver.disconnect();
+  }
+  handleSlotChange() {
+    const slot = this.host.shadowRoot.querySelector('slot');
+    const elements = slot.assignedElements({ flatten: true });
+    // Unwatch previous elements
+    this.observedElements.map(el => this.resizeObserver.unobserve(el));
+    this.observedElements = [];
+    // Watch new elements
+    elements.map(el => {
+      this.resizeObserver.observe(el);
+      this.observedElements.push(el);
+    });
+  }
+  render() {
+    return index.h("slot", { onSlotchange: this.handleSlotChange });
+  }
+  get host() { return index.getElement(this); }
+};
+ResizeObserverUtility.style = resizeObserverCss;
+
+exports.sl_resize_observer = ResizeObserverUtility;

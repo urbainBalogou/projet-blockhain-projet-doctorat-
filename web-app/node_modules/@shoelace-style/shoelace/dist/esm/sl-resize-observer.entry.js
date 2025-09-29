@@ -1,0 +1,37 @@
+import { r as registerInstance, c as createEvent, h, g as getElement } from './index-30311a18.js';
+
+const resizeObserverCss = ":host{position:relative;box-sizing:border-box}:host *,:host *:before,:host *:after{box-sizing:inherit}:host{display:contents}";
+
+const ResizeObserverUtility = class {
+  constructor(hostRef) {
+    registerInstance(this, hostRef);
+    this.slResize = createEvent(this, "sl-resize", 7);
+    this.observedElements = [];
+  }
+  connectedCallback() {
+    this.resizeObserver = new ResizeObserver(entries => this.slResize.emit(entries));
+    this.handleSlotChange = this.handleSlotChange.bind(this);
+  }
+  disconnectedCallback() {
+    this.resizeObserver.disconnect();
+  }
+  handleSlotChange() {
+    const slot = this.host.shadowRoot.querySelector('slot');
+    const elements = slot.assignedElements({ flatten: true });
+    // Unwatch previous elements
+    this.observedElements.map(el => this.resizeObserver.unobserve(el));
+    this.observedElements = [];
+    // Watch new elements
+    elements.map(el => {
+      this.resizeObserver.observe(el);
+      this.observedElements.push(el);
+    });
+  }
+  render() {
+    return h("slot", { onSlotchange: this.handleSlotChange });
+  }
+  get host() { return getElement(this); }
+};
+ResizeObserverUtility.style = resizeObserverCss;
+
+export { ResizeObserverUtility as sl_resize_observer };

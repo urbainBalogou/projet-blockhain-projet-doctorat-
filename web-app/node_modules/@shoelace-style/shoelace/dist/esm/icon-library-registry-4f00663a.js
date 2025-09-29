@@ -1,0 +1,33 @@
+import { a as getAssetPath } from './index-30311a18.js';
+
+let registry = [
+  {
+    name: 'default',
+    resolver: name => getAssetPath(`./icons/${name}.svg`)
+  }
+];
+let watchedIcons = [];
+function watchIcon(icon) {
+  watchedIcons.push(icon);
+}
+function unwatchIcon(icon) {
+  watchedIcons = watchedIcons.filter(el => el !== icon);
+}
+function getLibrary(name) {
+  return registry.filter(lib => lib.name === name)[0];
+}
+function registerLibrary(name, resolver, mutator) {
+  unregisterLibrary(name);
+  registry.push({ name, resolver, mutator });
+  // Redraw watched icons
+  watchedIcons.map(icon => {
+    if (icon.library === name) {
+      icon.redraw();
+    }
+  });
+}
+function unregisterLibrary(name) {
+  registry = registry.filter(lib => lib.name !== name);
+}
+
+export { unwatchIcon as a, getLibrary as g, registerLibrary as r, unregisterLibrary as u, watchIcon as w };

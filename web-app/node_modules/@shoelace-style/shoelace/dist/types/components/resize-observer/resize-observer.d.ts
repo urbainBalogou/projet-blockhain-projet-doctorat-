@@ -1,0 +1,17 @@
+/// <reference types="resize-observer-browser" />
+import { EventEmitter } from '../../stencil-public-runtime';
+/**
+ * @since 2.0
+ * @status experimental
+ */
+export declare class ResizeObserverUtility {
+  resizeObserver: ResizeObserver;
+  observedElements: HTMLElement[];
+  host: HTMLSlResizeObserverElement;
+  /** Emitted when the element is resized. */
+  slResize: EventEmitter<readonly ResizeObserverEntry[]>;
+  connectedCallback(): void;
+  disconnectedCallback(): void;
+  handleSlotChange(): void;
+  render(): any;
+}

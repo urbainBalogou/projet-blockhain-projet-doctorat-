@@ -1,0 +1,18 @@
+:host {
+  position: relative;
+  box-sizing: border-box;
+}
+:host *, :host *:before, :host *:after {
+  box-sizing: inherit;
+}
+
+:host {
+  display: block;
+}
+
+.menu {
+  padding: var(--sl-spacing-x-small) 0;
+}
+.menu:focus {
+  outline: none;
+}

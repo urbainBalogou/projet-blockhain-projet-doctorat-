@@ -1,0 +1,38 @@
+import { r as registerInstance, h } from './index-30311a18.js';
+
+const responsiveEmbedCss = ":host{position:relative;box-sizing:border-box}:host *,:host *:before,:host *:after{box-sizing:inherit}:host{display:block}.responsive-embed{position:relative}.responsive-embed ::slotted(embed),.responsive-embed ::slotted(iframe),.responsive-embed ::slotted(object){position:absolute !important;top:0 !important;left:0 !important;width:100% !important;height:100% !important}";
+
+const ResponsiveEmbed = class {
+  constructor(hostRef) {
+    registerInstance(this, hostRef);
+    /**
+     * The aspect ratio of the embedded media in the format of `width:height`, e.g. `16:9`, `4:3`, or `1:1`. Ratios not in
+     * this format will be ignored.
+     */
+    this.aspectRatio = '16:9';
+  }
+  handleAspectRatioChange() {
+    this.setAspectRatio();
+  }
+  connectedCallback() {
+    this.handleSlotChange = this.handleSlotChange.bind(this);
+  }
+  handleSlotChange() {
+    this.setAspectRatio();
+  }
+  setAspectRatio() {
+    const split = this.aspectRatio.split(':');
+    const x = parseInt(split[0]);
+    const y = parseInt(split[1]);
+    this.base.style.paddingBottom = x && y ? `${(y / x) * 100}%` : null;
+  }
+  render() {
+    return (h("div", { ref: el => (this.base = el), part: "base", class: "responsive-embed" }, h("slot", { onSlotchange: this.handleSlotChange })));
+  }
+  static get watchers() { return {
+    "aspectRatio": ["handleAspectRatioChange"]
+  }; }
+};
+ResponsiveEmbed.style = responsiveEmbedCss;
+
+export { ResponsiveEmbed as sl_responsive_embed };

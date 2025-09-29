@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>transaction comptable</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Bouton pour ouvrir le modal -->
+  <!-- <button id="openModalBtn">Se connecter</button> -->
+  <div id="afterLog">
+    <p id="userName"></p>
+    <button id="logoutBtn" style="display:none;">Se déconnecter</button>
+  </div>
+
+  <!-- La boîte de dialogue (modal) -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span id="closeModalBtn" class="close">&times;</span>
+      <h2>Connexion à la blockchain</h2>
+      <form id="loginForm">
+        <label for="username">Identifiant</label>
+        <input type="text" id="username" name="username" required />
+
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" name="password" required />
+        <div id="errorMsg" class="error"></div>
+        <button type="submit">Valider</button>
+      </form>
+    </div>
+  </div>
+
+  <nav class="section-nav">
+    <button onclick="showSection('create-section')">Créer</button>
+    <button onclick="showSection('list-section')">Lister</button>
+    <button onclick="showSection('read-section')">Lire</button>
+    <!-- <button onclick="showSection('delete-section')">Supprimer</button> -->
+  </nav>
+
+  <section id="create-section" class="form-section section-active">
+    <div class="container">
+      <h1>Gestion des transactions</h1>
+      <form id="op-form">
+        <label>
+          Type d’opération :
+          <select id="op-type" required>
+            <option value="">--Choisissez--</option>
+            <option value="depense">Dépense</option>
+            <option value="recette">Recette</option>
+          </select>
+        </label>
+
+        <div id="account-fields" style="display:none; margin-top:1em;">
+          <label>
+            Compte Débit :
+            <select id="debit-account" required>
+              <option value="">--Compte--</option>
+            </select>
+          </label>
+          <br><br>
+          <label>
+            Compte Crédit :
+            <select id="credit-account" required>
+              <option value="">--Compte--</option>
+            </select>
+          </label>
+          <br><br>
+          <label>Adresse MAC :
+            <input type="text" id="mac" readonly style="background-color: rgba(221, 221, 222, 0.78); font-weight: bold;">
+          </label>
+          <br>
+          <label style="display:block; margin-top:0.3em;">
+            Montant :
+            <input type="text" id="amount" required>
+          </label>
+        </div>
+
+        <button type="submit">Valider</button>
+      </form>
+      <h2>DB existante</h2>
+      <table id="productsTable0">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Type</th>
+            <th>Compte de debit</th>
+            <th>Compte de credit</th>
+            <th>Montant</th>
+            <th>Envoyer dans la blockchain</th>
+          </tr>
+        </thead>
+        <tbody id="tbody0"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="list-section" class="list-section">
+    <div id="container-list">
+      <h2>Transactions enregistrés</h2>
+      <table id="txsTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Type</th>
+            <th>Montant</th>
+            <th>Etat dans la blockchain</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- Section Lire par ID -->
+  <section id="read-section" class="read-section">
+    <h2>Lire les details d'une transaction</h2>
+    <input type="text" id="readID" placeholder="ID transaction">
+    <button onclick="loadEntries()">Afficher</button>
+    <div id="readResult"></div>
+
+    <table id="productsTable2">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Numero de compte</th>
+          <th>Libellé</th>
+          <th>Type d'entré</th>
+          <th>Montant</th>
+        </tr>
+      </thead>
+      <tbody id="tbody2"></tbody>
+    </table>
+  </section>
+
+  <div id="custom-alert" class="modal2">
+    <div class="modal-content2">
+      <p id="custom-message"></p>
+      <button id="custom-ok">OK</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

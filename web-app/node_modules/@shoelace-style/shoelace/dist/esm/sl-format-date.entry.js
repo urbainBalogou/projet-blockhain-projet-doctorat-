@@ -1,0 +1,34 @@
+import { r as registerInstance } from './index-30311a18.js';
+
+const FormatBytes = class {
+  constructor(hostRef) {
+    registerInstance(this, hostRef);
+    /** The date/time to format. If not set, the current date and time will be used. */
+    this.date = new Date();
+    /** When set, 24 hour time will always be used. */
+    this.hourFormat = 'auto';
+  }
+  render() {
+    const date = new Date(this.date);
+    const hour12 = this.hourFormat === 'auto' ? undefined : this.hourFormat === '12';
+    // Check for an invalid date
+    if (isNaN(date.getMilliseconds())) {
+      return;
+    }
+    return new Intl.DateTimeFormat(this.locale, {
+      weekday: this.weekday,
+      era: this.era,
+      year: this.year,
+      month: this.month,
+      day: this.day,
+      hour: this.hour,
+      minute: this.minute,
+      second: this.second,
+      timeZoneName: this.timeZoneName,
+      timeZone: this.timeZone,
+      hour12: hour12
+    }).format(date);
+  }
+};
+
+export { FormatBytes as sl_format_date };

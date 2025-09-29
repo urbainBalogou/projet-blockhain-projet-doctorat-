@@ -1,0 +1,38 @@
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+const index = require('./index-2ed8b67e.js');
+
+const FormatBytes = class {
+  constructor(hostRef) {
+    index.registerInstance(this, hostRef);
+    /** The date/time to format. If not set, the current date and time will be used. */
+    this.date = new Date();
+    /** When set, 24 hour time will always be used. */
+    this.hourFormat = 'auto';
+  }
+  render() {
+    const date = new Date(this.date);
+    const hour12 = this.hourFormat === 'auto' ? undefined : this.hourFormat === '12';
+    // Check for an invalid date
+    if (isNaN(date.getMilliseconds())) {
+      return;
+    }
+    return new Intl.DateTimeFormat(this.locale, {
+      weekday: this.weekday,
+      era: this.era,
+      year: this.year,
+      month: this.month,
+      day: this.day,
+      hour: this.hour,
+      minute: this.minute,
+      second: this.second,
+      timeZoneName: this.timeZoneName,
+      timeZone: this.timeZone,
+      hour12: hour12
+    }).format(date);
+  }
+};
+
+exports.sl_format_date = FormatBytes;

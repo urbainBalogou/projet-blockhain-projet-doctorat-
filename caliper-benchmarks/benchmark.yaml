@@ -1,0 +1,27 @@
+test:
+  name: simple-benchmark
+  description: Test de performance du réseau Fabric
+  workers:         # <--- au lieu de clients
+    type: local
+    number: 2
+  rounds:
+    - label: createAssets
+      description: Envoi de transactions CreateProduct
+      txDuration: 30
+      rateControl:
+        type: fixed-load
+        opts:
+          tps: 10
+      workload:
+        module: ./workload/createAssets.js
+
+    - label: queryAssets
+      description: Lecture des produits
+      txNumber: 50
+      rateControl:
+        type: fixed-load
+        opts:
+          tps: 5
+      workload:
+        module: ./workload/queryAssets.js
+

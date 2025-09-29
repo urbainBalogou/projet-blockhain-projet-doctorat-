@@ -1,0 +1,36 @@
+name: Fabric-Network
+version: "2.0.0"
+
+caliper:
+  blockchain: fabric
+
+channels:
+  - channelName: mychannel
+    contracts:
+      - id: operation_comptable
+        version: "1.0.0"
+
+organizations:
+  - mspid: Org1MSP
+    identities:
+      certificates:
+        - name: 'admin'
+          clientPrivateKey:
+            path: /home/vboxuser/projet-blockchain/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/ebd29529841e903c4b69bcf56203743d6359537350b79c1401d2f0d24969263c_sk
+          clientSignedCert:
+            path: /home/vboxuser/projet-blockchain/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/cert.pem
+    connectionProfile:
+      path: /home/vboxuser/projet-blockchain/fabric-samples/test-network/organizations/peerOrganizations/org1.example.com/connection-org1.yaml
+      discover: true
+
+peers:
+  peer0.org1.example.com:
+    url: grpc://localhost:7051
+    grpcOptions:
+      ssl-target-name-override: peer0.org1.example.com
+
+orderers:
+  orderer.example.com:
+    url: grpc://localhost:7050
+    grpcOptions:
+      ssl-target-name-override: orderer.example.com

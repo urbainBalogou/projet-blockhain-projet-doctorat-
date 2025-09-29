@@ -1,0 +1,235 @@
+:host {
+  position: relative;
+  box-sizing: border-box;
+}
+:host *, :host *:before, :host *:after {
+  box-sizing: inherit;
+}
+
+.form-control .form-control__label {
+  display: none;
+}
+.form-control .form-control__help-text {
+  display: none;
+}
+
+.form-control--has-label .form-control__label {
+  display: inline-block;
+  color: var(--sl-input-label-color);
+  margin-bottom: var(--sl-spacing-xxx-small);
+}
+.form-control--has-label.form-control--small .form-control__label {
+  font-size: var(--sl-input-label-font-size-small);
+}
+.form-control--has-label.form-control--medium .form-control__label {
+  font-size: var(--sl-input-label-font-size-medium);
+}
+.form-control--has-label.form-control--large .form-control_label {
+  font-size: var(--sl-input-label-font-size-large);
+}
+
+.form-control--has-help-text .form-control__help-text {
+  display: block;
+  color: var(--sl-input-help-text-color);
+}
+.form-control--has-help-text .form-control__help-text ::slotted(*) {
+  margin-top: var(--sl-spacing-xxx-small);
+}
+.form-control--has-help-text.form-control--small .form-control__help-text {
+  font-size: var(--sl-input-help-text-font-size-small);
+}
+.form-control--has-help-text.form-control--medium .form-control__help-text {
+  font-size: var(--sl-input-help-text-font-size-medium);
+}
+.form-control--has-help-text.form-control--large .form-control__help-text {
+  font-size: var(--sl-input-help-text-font-size-large);
+}
+
+/**
+ * @prop --focus-ring: The focus ring style to use when the control receives focus, a `box-shadow` property.
+ */
+:host {
+  --focus-ring: 0 0 0 var(--sl-focus-ring-width) var(--sl-focus-ring-color-primary);
+  display: block;
+}
+
+.select {
+  display: block;
+}
+
+.select__box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: start;
+  position: relative;
+  width: 100%;
+  font-family: var(--sl-input-font-family);
+  font-weight: var(--sl-input-font-weight);
+  letter-spacing: var(--sl-input-letter-spacing);
+  background-color: var(--sl-input-background-color);
+  border: solid var(--sl-input-border-width) var(--sl-input-border-color);
+  vertical-align: middle;
+  overflow: hidden;
+  transition: var(--sl-transition-fast) color, var(--sl-transition-fast) border, var(--sl-transition-fast) box-shadow;
+  cursor: pointer;
+}
+
+.select:not(.select--disabled) .select__box:hover {
+  background-color: var(--sl-input-background-color-hover);
+  border-color: var(--sl-input-border-color-hover);
+  color: var(--sl-input-color-hover);
+}
+
+.select:not(.select--disabled) .select__box:focus {
+  background-color: var(--sl-input-background-color-focus);
+  border-color: var(--sl-input-border-color-focus);
+  box-shadow: var(--focus-ring);
+  outline: none;
+  color: var(--sl-input-color-focus);
+}
+
+.select--disabled .select__box {
+  background-color: var(--sl-input-background-color-disabled);
+  border-color: var(--sl-input-border-color-disabled);
+  color: var(--sl-input-color-disabled);
+  opacity: 0.5;
+  cursor: not-allowed;
+  outline: none;
+}
+.select--disabled .select__tags,
+.select--disabled .select__clear {
+  pointer-events: none;
+}
+
+.select__label {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+.select__label::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.select__clear {
+  flex: 0 0 auto;
+}
+
+.select__icon {
+  flex: 0 0 auto;
+  display: inline-flex;
+  transition: var(--sl-transition-medium) transform ease;
+}
+
+.select--open .select__icon {
+  transform: rotate(-180deg);
+}
+
+.select--placeholder-visible .select__label {
+  color: var(--sl-input-placeholder-color);
+}
+
+.select--disabled.select--placeholder-visible .select__label {
+  color: var(--sl-input-placeholder-color-disabled);
+}
+
+.select__tags {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: var(--sl-spacing-xx-small);
+}
+
+.select__hidden-select {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.select--small .select__box {
+  border-radius: var(--sl-input-border-radius-small);
+  font-size: var(--sl-input-font-size-small);
+  height: var(--sl-input-height-small);
+}
+.select--small .select__label {
+  margin: 0 var(--sl-input-spacing-small);
+}
+.select--small .select__clear {
+  margin-right: var(--sl-input-spacing-small);
+}
+.select--small .select__icon {
+  margin-right: var(--sl-input-spacing-small);
+}
+.select--small .select__tags sl-tag:not(:last-of-type) {
+  margin-right: var(--sl-spacing-xx-small);
+}
+.select--small.select--has-tags .select__label {
+  margin-left: 0;
+}
+
+.select--medium .select__box {
+  border-radius: var(--sl-input-border-radius-medium);
+  font-size: var(--sl-input-font-size-medium);
+  height: var(--sl-input-height-medium);
+}
+.select--medium .select__label {
+  margin: 0 var(--sl-input-spacing-medium);
+}
+.select--medium .select__clear {
+  margin-right: var(--sl-input-spacing-medium);
+}
+.select--medium .select__icon {
+  margin-right: var(--sl-input-spacing-medium);
+}
+.select--medium .select__tags sl-tag:not(:last-of-type) {
+  margin-right: var(--sl-spacing-xx-small);
+}
+.select--medium.select--has-tags .select__label {
+  margin-left: 0;
+}
+
+.select--large .select__box {
+  border-radius: var(--sl-input-border-radius-large);
+  font-size: var(--sl-input-font-size-large);
+  height: var(--sl-input-height-large);
+}
+.select--large .select__label {
+  margin: 0 var(--sl-input-spacing-large);
+}
+.select--large .select__clear {
+  margin-right: var(--sl-input-spacing-large);
+}
+.select--large .select__icon {
+  margin-right: var(--sl-input-spacing-large);
+}
+.select--large .select__tags sl-tag:not(:last-of-type) {
+  margin-right: var(--sl-spacing-xx-small);
+}
+.select--large.select--has-tags .select__label {
+  margin-left: 0;
+}
+
+.select--pill.select--small .select__box {
+  border-radius: var(--sl-input-height-small);
+}
+.select--pill.select--medium .select__box {
+  border-radius: var(--sl-input-height-medium);
+}
+.select--pill.select--large .select__box {
+  border-radius: var(--sl-input-height-large);
+}

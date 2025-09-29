@@ -1,0 +1,20 @@
+{
+  "name": "caliper-benchmarks",
+  "version": "1.0.0",
+  "devDependencies": {
+    "@hyperledger/caliper-cli": "^0.6.0"
+  },
+  "dependencies": {
+    "@hyperledger/caliper-fabric": "^0.6.0",
+    "fabric-ca-client": "^2.2.19",
+    "fabric-network": "^2.2.19"
+  },
+  "main": "createAssets.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
